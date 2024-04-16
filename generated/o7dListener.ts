@@ -3,10 +3,16 @@
 
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
-import { ProgContext } from "./o7dParser";
-import { ModelContext } from "./o7dParser";
-import { FieldContext } from "./o7dParser";
-import { TypeContext } from "./o7dParser";
+import { SchemaContext } from "./o7dParser";
+import { HeaderContext } from "./o7dParser";
+import { ModelDeclarationContext } from "./o7dParser";
+import { ModelAttributeDeclarationContext } from "./o7dParser";
+import { FieldDeclarationContext } from "./o7dParser";
+import { FieldAttributeDeclarationContext } from "./o7dParser";
+import { AttributeValuesContext } from "./o7dParser";
+import { AttributeValuePositionalContext } from "./o7dParser";
+import { AttributeValueNamedContext } from "./o7dParser";
+import { ExpressionsContext } from "./o7dParser";
 import { ExpressionContext } from "./o7dParser";
 
 
@@ -16,48 +22,114 @@ import { ExpressionContext } from "./o7dParser";
  */
 export interface o7dListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by `o7dParser.prog`.
+	 * Enter a parse tree produced by `o7dParser.schema`.
 	 * @param ctx the parse tree
 	 */
-	enterProg?: (ctx: ProgContext) => void;
+	enterSchema?: (ctx: SchemaContext) => void;
 	/**
-	 * Exit a parse tree produced by `o7dParser.prog`.
+	 * Exit a parse tree produced by `o7dParser.schema`.
 	 * @param ctx the parse tree
 	 */
-	exitProg?: (ctx: ProgContext) => void;
+	exitSchema?: (ctx: SchemaContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `o7dParser.model`.
+	 * Enter a parse tree produced by `o7dParser.header`.
 	 * @param ctx the parse tree
 	 */
-	enterModel?: (ctx: ModelContext) => void;
+	enterHeader?: (ctx: HeaderContext) => void;
 	/**
-	 * Exit a parse tree produced by `o7dParser.model`.
+	 * Exit a parse tree produced by `o7dParser.header`.
 	 * @param ctx the parse tree
 	 */
-	exitModel?: (ctx: ModelContext) => void;
+	exitHeader?: (ctx: HeaderContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `o7dParser.field`.
+	 * Enter a parse tree produced by `o7dParser.modelDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	enterField?: (ctx: FieldContext) => void;
+	enterModelDeclaration?: (ctx: ModelDeclarationContext) => void;
 	/**
-	 * Exit a parse tree produced by `o7dParser.field`.
+	 * Exit a parse tree produced by `o7dParser.modelDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	exitField?: (ctx: FieldContext) => void;
+	exitModelDeclaration?: (ctx: ModelDeclarationContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `o7dParser.type`.
+	 * Enter a parse tree produced by `o7dParser.modelAttributeDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	enterType?: (ctx: TypeContext) => void;
+	enterModelAttributeDeclaration?: (ctx: ModelAttributeDeclarationContext) => void;
 	/**
-	 * Exit a parse tree produced by `o7dParser.type`.
+	 * Exit a parse tree produced by `o7dParser.modelAttributeDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	exitType?: (ctx: TypeContext) => void;
+	exitModelAttributeDeclaration?: (ctx: ModelAttributeDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.fieldDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterFieldDeclaration?: (ctx: FieldDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.fieldDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitFieldDeclaration?: (ctx: FieldDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.fieldAttributeDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterFieldAttributeDeclaration?: (ctx: FieldAttributeDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.fieldAttributeDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitFieldAttributeDeclaration?: (ctx: FieldAttributeDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.attributeValues`.
+	 * @param ctx the parse tree
+	 */
+	enterAttributeValues?: (ctx: AttributeValuesContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.attributeValues`.
+	 * @param ctx the parse tree
+	 */
+	exitAttributeValues?: (ctx: AttributeValuesContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.attributeValuePositional`.
+	 * @param ctx the parse tree
+	 */
+	enterAttributeValuePositional?: (ctx: AttributeValuePositionalContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.attributeValuePositional`.
+	 * @param ctx the parse tree
+	 */
+	exitAttributeValuePositional?: (ctx: AttributeValuePositionalContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.attributeValueNamed`.
+	 * @param ctx the parse tree
+	 */
+	enterAttributeValueNamed?: (ctx: AttributeValueNamedContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.attributeValueNamed`.
+	 * @param ctx the parse tree
+	 */
+	exitAttributeValueNamed?: (ctx: AttributeValueNamedContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.expressions`.
+	 * @param ctx the parse tree
+	 */
+	enterExpressions?: (ctx: ExpressionsContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.expressions`.
+	 * @param ctx the parse tree
+	 */
+	exitExpressions?: (ctx: ExpressionsContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `o7dParser.expression`.

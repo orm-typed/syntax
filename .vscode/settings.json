@@ -1,0 +1,6 @@
+{
+  "[antlr]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "mike-lischke.vscode-antlr4",
+  },
+}

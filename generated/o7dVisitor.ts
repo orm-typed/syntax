@@ -3,10 +3,16 @@
 
 import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
-import { ProgContext } from "./o7dParser";
-import { ModelContext } from "./o7dParser";
-import { FieldContext } from "./o7dParser";
-import { TypeContext } from "./o7dParser";
+import { SchemaContext } from "./o7dParser";
+import { HeaderContext } from "./o7dParser";
+import { ModelDeclarationContext } from "./o7dParser";
+import { ModelAttributeDeclarationContext } from "./o7dParser";
+import { FieldDeclarationContext } from "./o7dParser";
+import { FieldAttributeDeclarationContext } from "./o7dParser";
+import { AttributeValuesContext } from "./o7dParser";
+import { AttributeValuePositionalContext } from "./o7dParser";
+import { AttributeValueNamedContext } from "./o7dParser";
+import { ExpressionsContext } from "./o7dParser";
 import { ExpressionContext } from "./o7dParser";
 
 
@@ -19,32 +25,74 @@ import { ExpressionContext } from "./o7dParser";
  */
 export interface o7dVisitor<Result> extends ParseTreeVisitor<Result> {
 	/**
-	 * Visit a parse tree produced by `o7dParser.prog`.
+	 * Visit a parse tree produced by `o7dParser.schema`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitProg?: (ctx: ProgContext) => Result;
+	visitSchema?: (ctx: SchemaContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `o7dParser.model`.
+	 * Visit a parse tree produced by `o7dParser.header`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitModel?: (ctx: ModelContext) => Result;
+	visitHeader?: (ctx: HeaderContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `o7dParser.field`.
+	 * Visit a parse tree produced by `o7dParser.modelDeclaration`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitField?: (ctx: FieldContext) => Result;
+	visitModelDeclaration?: (ctx: ModelDeclarationContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `o7dParser.type`.
+	 * Visit a parse tree produced by `o7dParser.modelAttributeDeclaration`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitType?: (ctx: TypeContext) => Result;
+	visitModelAttributeDeclaration?: (ctx: ModelAttributeDeclarationContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.fieldDeclaration`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitFieldDeclaration?: (ctx: FieldDeclarationContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.fieldAttributeDeclaration`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitFieldAttributeDeclaration?: (ctx: FieldAttributeDeclarationContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.attributeValues`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAttributeValues?: (ctx: AttributeValuesContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.attributeValuePositional`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAttributeValuePositional?: (ctx: AttributeValuePositionalContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.attributeValueNamed`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAttributeValueNamed?: (ctx: AttributeValueNamedContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.expressions`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitExpressions?: (ctx: ExpressionsContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `o7dParser.expression`.

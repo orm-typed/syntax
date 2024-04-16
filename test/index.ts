@@ -46,7 +46,7 @@ function isValid(filePath: string): boolean {
   parser.removeErrorListeners();
   parser.addErrorListener(listener);
 
-  const tree = parser.prog();
+  const tree = parser.schema();
 
   return listener.lexerErrorCount === 0 && listener.parserErrorCount === 0;
 }
