@@ -5,6 +5,7 @@ import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
 import { SchemaContext } from "./o7dParser";
 import { HeaderContext } from "./o7dParser";
+import { ModelOrEnumOrScalarDeclarationContext } from "./o7dParser";
 import { ModelDeclarationContext } from "./o7dParser";
 import { ModelAttributeDeclarationContext } from "./o7dParser";
 import { FieldDeclarationContext } from "./o7dParser";
@@ -14,6 +15,8 @@ import { AttributeValuePositionalContext } from "./o7dParser";
 import { AttributeValueNamedContext } from "./o7dParser";
 import { ExpressionsContext } from "./o7dParser";
 import { ExpressionContext } from "./o7dParser";
+import { EnumDeclarationContext } from "./o7dParser";
+import { ScalarDeclarationContext } from "./o7dParser";
 
 
 /**
@@ -37,6 +40,13 @@ export interface o7dVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitHeader?: (ctx: HeaderContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclaration`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitModelOrEnumOrScalarDeclaration?: (ctx: ModelOrEnumOrScalarDeclarationContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `o7dParser.modelDeclaration`.
@@ -100,5 +110,19 @@ export interface o7dVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitExpression?: (ctx: ExpressionContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.enumDeclaration`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitEnumDeclaration?: (ctx: EnumDeclarationContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.scalarDeclaration`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitScalarDeclaration?: (ctx: ScalarDeclarationContext) => Result;
 }
 

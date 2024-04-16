@@ -1,6 +1,13 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+  },
   "[antlr]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "mike-lischke.vscode-antlr4",
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
 }

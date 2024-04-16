@@ -1,9 +1,13 @@
 grammar o7d;
 
-schema: header? modelDeclaration* EOF;
+schema: header? modelOrEnumOrScalarDeclaration* EOF;
 
 header:
 	'header' '{' (fieldDeclaration)* (modelAttributeDeclaration)* '}';
+modelOrEnumOrScalarDeclaration:
+	modelDeclaration
+	| enumDeclaration
+	| scalarDeclaration;
 modelDeclaration:
 	'model' ID '{' (fieldDeclaration)* (
 		modelAttributeDeclaration
@@ -30,6 +34,10 @@ expression:
 	| BOOLEAN
 	| 'null'
 	| ('[' expressions? ']');
+enumDeclaration:
+	'enum' ID '{' STRING* modelAttributeDeclaration* '}';
+scalarDeclaration:
+	'scalar' ID '=' ID fieldAttributeDeclaration*;
 
 ID: [a-zA-Z_] [a-zA-Z0-9_]*;
 STRING: '"' (ESC_SEQ | ~["\\])* '"';

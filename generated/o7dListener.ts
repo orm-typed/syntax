@@ -5,6 +5,7 @@ import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
 import { SchemaContext } from "./o7dParser";
 import { HeaderContext } from "./o7dParser";
+import { ModelOrEnumOrScalarDeclarationContext } from "./o7dParser";
 import { ModelDeclarationContext } from "./o7dParser";
 import { ModelAttributeDeclarationContext } from "./o7dParser";
 import { FieldDeclarationContext } from "./o7dParser";
@@ -14,6 +15,8 @@ import { AttributeValuePositionalContext } from "./o7dParser";
 import { AttributeValueNamedContext } from "./o7dParser";
 import { ExpressionsContext } from "./o7dParser";
 import { ExpressionContext } from "./o7dParser";
+import { EnumDeclarationContext } from "./o7dParser";
+import { ScalarDeclarationContext } from "./o7dParser";
 
 
 /**
@@ -42,6 +45,17 @@ export interface o7dListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitHeader?: (ctx: HeaderContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterModelOrEnumOrScalarDeclaration?: (ctx: ModelOrEnumOrScalarDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitModelOrEnumOrScalarDeclaration?: (ctx: ModelOrEnumOrScalarDeclarationContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `o7dParser.modelDeclaration`.
@@ -141,5 +155,27 @@ export interface o7dListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitExpression?: (ctx: ExpressionContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.enumDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterEnumDeclaration?: (ctx: EnumDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.enumDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitEnumDeclaration?: (ctx: EnumDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.scalarDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterScalarDeclaration?: (ctx: ScalarDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.scalarDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitScalarDeclaration?: (ctx: ScalarDeclarationContext) => void;
 }
 
