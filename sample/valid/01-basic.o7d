@@ -1,9 +1,22 @@
+/**
+ * Test file
+ *
+ * Content of this file is not in actual syntax.
+ */
+
 header {
   ID String @db.type(UUID) @default(" this is not valid UUID\\\"\n")
 
+  /**
+   * Test file
+   *
+   * This file is to test o7d grammar
+   */
+
   @@db("test")
   @@enablePreviewFeature("multiSchema")
-  @@multiSchema.schemas([default, "test"])
+  // comment
+  @@multiSchema.schemas([default, "test"]) // test
 }
 
 model User {
@@ -11,8 +24,14 @@ model User {
   nickname String @unique
   passwordHash String?
 
+  /**
+   * Test file
+   *
+   * This file is to test o7d grammar
+   */
+
   auth OAuth[] @relation("User:OAuth")
-}
+/* test */}
 
 model OAuth {
   id ID @id @default(native("AUTO_INCREMENT"))
@@ -20,7 +39,7 @@ model OAuth {
   externalId String
   userId ID?
 
-  user User? @relation("User:OAuth", fields: [userId], references: [id])
+  user User? /* test */ @relation("User:OAuth", fields: [userId], references: [id])
 
   @@unique([provider, externalId])
   @@map("oauth")

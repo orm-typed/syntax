@@ -19,7 +19,7 @@ public class o7dParser extends Parser {
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, ID=17, 
 		STRING=18, ESC_SEQ=19, UNICODE_ESC=20, HEX=21, NUMBER=22, BOOLEAN=23, 
-		WS=24;
+		WS=24, SINGLE_LINE_COMMENT=25, MULTI_LINE_COMMENT=26;
 	public static final int
 		RULE_schema = 0, RULE_header = 1, RULE_modelDeclaration = 2, RULE_modelAttributeDeclaration = 3, 
 		RULE_fieldDeclaration = 4, RULE_fieldAttributeDeclaration = 5, RULE_attributeValues = 6, 
@@ -45,7 +45,7 @@ public class o7dParser extends Parser {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, "ID", "STRING", "ESC_SEQ", "UNICODE_ESC", 
-			"HEX", "NUMBER", "BOOLEAN", "WS"
+			"HEX", "NUMBER", "BOOLEAN", "WS", "SINGLE_LINE_COMMENT", "MULTI_LINE_COMMENT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -882,7 +882,7 @@ public class o7dParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0018\u00a2\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
+		"\u0004\u0001\u001a\u00a2\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
 		"\u0002\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004"+
 		"\u0002\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007"+
 		"\u0002\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0001\u0000\u0003\u0000"+

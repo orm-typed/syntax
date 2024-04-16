@@ -39,3 +39,5 @@ HEX: [0-9a-fA-F];
 NUMBER: [0-9]+ ('.' [0-9]+)?;
 BOOLEAN: 'true' | 'false';
 WS: [ \t\r\n]+ -> skip;
+SINGLE_LINE_COMMENT: '//' ~[\r\n]* -> skip;
+MULTI_LINE_COMMENT: '/*' .*? '*/' -> skip;

@@ -52,6 +52,8 @@ export class o7dParser extends Parser {
 	public static readonly NUMBER = 22;
 	public static readonly BOOLEAN = 23;
 	public static readonly WS = 24;
+	public static readonly SINGLE_LINE_COMMENT = 25;
+	public static readonly MULTI_LINE_COMMENT = 26;
 	public static readonly RULE_schema = 0;
 	public static readonly RULE_header = 1;
 	public static readonly RULE_modelDeclaration = 2;
@@ -78,7 +80,7 @@ export class o7dParser extends Parser {
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
 		undefined, undefined, undefined, "ID", "STRING", "ESC_SEQ", "UNICODE_ESC", 
-		"HEX", "NUMBER", "BOOLEAN", "WS",
+		"HEX", "NUMBER", "BOOLEAN", "WS", "SINGLE_LINE_COMMENT", "MULTI_LINE_COMMENT",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(o7dParser._LITERAL_NAMES, o7dParser._SYMBOLIC_NAMES, []);
 
@@ -758,7 +760,7 @@ export class o7dParser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\x1A\xA4\x04\x02" +
+		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\x1C\xA4\x04\x02" +
 		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
 		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x03\x02\x05\x02" +
 		"\x1A\n\x02\x03\x02\x07\x02\x1D\n\x02\f\x02\x0E\x02 \v\x02\x03\x02\x03" +
