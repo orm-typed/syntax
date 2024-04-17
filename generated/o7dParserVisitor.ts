@@ -1,9 +1,10 @@
-// Generated from ./o7d.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from ./o7dParser.g4 by ANTLR 4.9.0-SNAPSHOT
 
 
 import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
 import { SchemaContext } from "./o7dParser";
+import { CommentContext } from "./o7dParser";
 import { HeaderContext } from "./o7dParser";
 import { ModelOrEnumOrScalarDeclarationContext } from "./o7dParser";
 import { ModelDeclarationContext } from "./o7dParser";
@@ -26,13 +27,20 @@ import { ScalarDeclarationContext } from "./o7dParser";
  * @param <Result> The return type of the visit operation. Use `void` for
  * operations with no return type.
  */
-export interface o7dVisitor<Result> extends ParseTreeVisitor<Result> {
+export interface o7dParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	/**
 	 * Visit a parse tree produced by `o7dParser.schema`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	visitSchema?: (ctx: SchemaContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.comment`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitComment?: (ctx: CommentContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `o7dParser.header`.

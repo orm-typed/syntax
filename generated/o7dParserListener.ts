@@ -1,9 +1,10 @@
-// Generated from ./o7d.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from ./o7dParser.g4 by ANTLR 4.9.0-SNAPSHOT
 
 
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
 import { SchemaContext } from "./o7dParser";
+import { CommentContext } from "./o7dParser";
 import { HeaderContext } from "./o7dParser";
 import { ModelOrEnumOrScalarDeclarationContext } from "./o7dParser";
 import { ModelDeclarationContext } from "./o7dParser";
@@ -23,7 +24,7 @@ import { ScalarDeclarationContext } from "./o7dParser";
  * This interface defines a complete listener for a parse tree produced by
  * `o7dParser`.
  */
-export interface o7dListener extends ParseTreeListener {
+export interface o7dParserListener extends ParseTreeListener {
 	/**
 	 * Enter a parse tree produced by `o7dParser.schema`.
 	 * @param ctx the parse tree
@@ -34,6 +35,17 @@ export interface o7dListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitSchema?: (ctx: SchemaContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.comment`.
+	 * @param ctx the parse tree
+	 */
+	enterComment?: (ctx: CommentContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.comment`.
+	 * @param ctx the parse tree
+	 */
+	exitComment?: (ctx: CommentContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `o7dParser.header`.

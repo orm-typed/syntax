@@ -1,0 +1,35 @@
+lexer grammar o7dLexer;
+
+HEADER: 'header';
+MODEL: 'model';
+ENUM: 'enum';
+SCALAR: 'scalar';
+NULL: 'null';
+AT: '@';
+ATAT: '@@';
+LBRACE: '{';
+RBRACE: '}';
+LBRACKET: '[';
+RBRACKET: ']';
+LPAREN: '(';
+RPAREN: ')';
+COLON: ':';
+COMMA: ',';
+EQ: '=';
+QUESTION: '?';
+DOT: '.';
+
+ID: [a-zA-Z_] [a-zA-Z0-9_]*;
+STRING: '"' (ESC_SEQ | ~["\\])* '"';
+ESC_SEQ: '\\' (["\\/bfnrt] | UNICODE_ESC);
+UNICODE_ESC: 'u' HEX HEX HEX HEX;
+HEX: [0-9a-fA-F];
+NUMBER16: '0x' HEX+;
+NUMBER10: (([1-9][0-9]*) | '0') ('.' [0-9]+)?;
+NUMBER8: ('0o' | '0') [0-7]+;
+NUMBER2: '0b' [0-1]+;
+NUMBER: NUMBER16 | NUMBER10 | NUMBER8 | NUMBER2;
+BOOLEAN: 'true' | 'false';
+WS: [ \t\r\n]+ -> skip;
+SINGLE_LINE_COMMENT: '//' ~[\r\n]*;
+MULTI_LINE_COMMENT: '/*' .*? '*/';

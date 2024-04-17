@@ -36,7 +36,9 @@ export function parseSchemaContext(input: string): SchemaContext | string[] {
   parser.removeErrorListeners();
   parser.addErrorListener(listener);
 
+  const result = parser.schema();
+
   if (errors.length) return errors;
 
-  return parser.schema();
+  return result;
 }

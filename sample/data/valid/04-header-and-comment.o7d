@@ -1,0 +1,9 @@
+// header and comment
+
+header {
+  /**
+   * comment in header
+   */
+}
+
+// comment too

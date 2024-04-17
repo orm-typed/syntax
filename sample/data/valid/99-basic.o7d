@@ -39,7 +39,7 @@ model OAuth {
   externalId String
   userId ID?
 
-  user User? /* test */ @relation("User:OAuth", fields: [userId], references: [id])
+  user User? @relation("User:OAuth", fields: [userId], references: [id])
 
   @@unique([provider, externalId])
   @@map("oauth")
