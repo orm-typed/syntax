@@ -8,7 +8,7 @@ import { AnyCommentContext } from "./o7dParser";
 import { LineEndingContext } from "./o7dParser";
 import { CommentLineContext } from "./o7dParser";
 import { HeaderContext } from "./o7dParser";
-import { ModelOrEnumOrScalarDeclarationCommentContext } from "./o7dParser";
+import { ModelOrEnumOrScalarDeclarationOrCommentContext } from "./o7dParser";
 import { ModelDeclarationContext } from "./o7dParser";
 import { ModelAttributeDeclarationLineContext } from "./o7dParser";
 import { FieldDeclarationLineContext } from "./o7dParser";
@@ -19,6 +19,7 @@ import { AttributeValueNamedContext } from "./o7dParser";
 import { ExpressionsContext } from "./o7dParser";
 import { ExpressionContext } from "./o7dParser";
 import { IdWithDotContext } from "./o7dParser";
+import { EnumMemberLineContext } from "./o7dParser";
 import { EnumDeclarationContext } from "./o7dParser";
 import { ScalarDeclarationContext } from "./o7dParser";
 
@@ -84,15 +85,15 @@ export interface o7dParserListener extends ParseTreeListener {
 	exitHeader?: (ctx: HeaderContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclarationComment`.
+	 * Enter a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclarationOrComment`.
 	 * @param ctx the parse tree
 	 */
-	enterModelOrEnumOrScalarDeclarationComment?: (ctx: ModelOrEnumOrScalarDeclarationCommentContext) => void;
+	enterModelOrEnumOrScalarDeclarationOrComment?: (ctx: ModelOrEnumOrScalarDeclarationOrCommentContext) => void;
 	/**
-	 * Exit a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclarationComment`.
+	 * Exit a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclarationOrComment`.
 	 * @param ctx the parse tree
 	 */
-	exitModelOrEnumOrScalarDeclarationComment?: (ctx: ModelOrEnumOrScalarDeclarationCommentContext) => void;
+	exitModelOrEnumOrScalarDeclarationOrComment?: (ctx: ModelOrEnumOrScalarDeclarationOrCommentContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `o7dParser.modelDeclaration`.
@@ -203,6 +204,17 @@ export interface o7dParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitIdWithDot?: (ctx: IdWithDotContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.enumMemberLine`.
+	 * @param ctx the parse tree
+	 */
+	enterEnumMemberLine?: (ctx: EnumMemberLineContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.enumMemberLine`.
+	 * @param ctx the parse tree
+	 */
+	exitEnumMemberLine?: (ctx: EnumMemberLineContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `o7dParser.enumDeclaration`.

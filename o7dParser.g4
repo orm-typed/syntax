@@ -5,7 +5,7 @@ options {
 }
 
 schema:
-	commentLine* header? modelOrEnumOrScalarDeclarationComment* EOF;
+	commentLine* header? modelOrEnumOrScalarDeclarationOrComment* EOF;
 
 anyComment: SINGLE_LINE_COMMENT | MULTI_LINE_COMMENT;
 lineEnding: (WS? anyComment)* NEWLINES;
@@ -15,7 +15,7 @@ header:
 		fieldDeclarationLine
 		| commentLine
 	)* (modelAttributeDeclarationLine | commentLine)* '}' lineEnding;
-modelOrEnumOrScalarDeclarationComment:
+modelOrEnumOrScalarDeclarationOrComment:
 	commentLine
 	| modelDeclaration
 	| enumDeclaration
@@ -51,9 +51,10 @@ expression:
 	| 'null'
 	| ('[' expressions? ']');
 idWithDot: ID ('.' ID)*;
+enumMemberLine: WS? STRING lineEnding;
 enumDeclaration:
 	'enum' WS ID WS? '{' lineEnding (
-		(WS? STRING lineEnding)
+		enumMemberLine
 		| commentLine
 	)* (modelAttributeDeclarationLine | commentLine)* '}' lineEnding;
 scalarDeclaration:

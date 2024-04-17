@@ -8,7 +8,7 @@ import { AnyCommentContext } from "./o7dParser";
 import { LineEndingContext } from "./o7dParser";
 import { CommentLineContext } from "./o7dParser";
 import { HeaderContext } from "./o7dParser";
-import { ModelOrEnumOrScalarDeclarationCommentContext } from "./o7dParser";
+import { ModelOrEnumOrScalarDeclarationOrCommentContext } from "./o7dParser";
 import { ModelDeclarationContext } from "./o7dParser";
 import { ModelAttributeDeclarationLineContext } from "./o7dParser";
 import { FieldDeclarationLineContext } from "./o7dParser";
@@ -19,6 +19,7 @@ import { AttributeValueNamedContext } from "./o7dParser";
 import { ExpressionsContext } from "./o7dParser";
 import { ExpressionContext } from "./o7dParser";
 import { IdWithDotContext } from "./o7dParser";
+import { EnumMemberLineContext } from "./o7dParser";
 import { EnumDeclarationContext } from "./o7dParser";
 import { ScalarDeclarationContext } from "./o7dParser";
 
@@ -67,11 +68,11 @@ export interface o7dParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitHeader?: (ctx: HeaderContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclarationComment`.
+	 * Visit a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclarationOrComment`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitModelOrEnumOrScalarDeclarationComment?: (ctx: ModelOrEnumOrScalarDeclarationCommentContext) => Result;
+	visitModelOrEnumOrScalarDeclarationOrComment?: (ctx: ModelOrEnumOrScalarDeclarationOrCommentContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `o7dParser.modelDeclaration`.
@@ -142,6 +143,13 @@ export interface o7dParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitIdWithDot?: (ctx: IdWithDotContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.enumMemberLine`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitEnumMemberLine?: (ctx: EnumMemberLineContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `o7dParser.enumDeclaration`.
