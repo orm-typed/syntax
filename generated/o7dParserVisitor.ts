@@ -4,18 +4,21 @@
 import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
 import { SchemaContext } from "./o7dParser";
-import { CommentContext } from "./o7dParser";
+import { AnyCommentContext } from "./o7dParser";
+import { LineEndingContext } from "./o7dParser";
+import { CommentLineContext } from "./o7dParser";
 import { HeaderContext } from "./o7dParser";
-import { ModelOrEnumOrScalarDeclarationContext } from "./o7dParser";
+import { ModelOrEnumOrScalarDeclarationCommentContext } from "./o7dParser";
 import { ModelDeclarationContext } from "./o7dParser";
-import { ModelAttributeDeclarationContext } from "./o7dParser";
-import { FieldDeclarationContext } from "./o7dParser";
+import { ModelAttributeDeclarationLineContext } from "./o7dParser";
+import { FieldDeclarationLineContext } from "./o7dParser";
 import { FieldAttributeDeclarationContext } from "./o7dParser";
 import { AttributeValuesContext } from "./o7dParser";
 import { AttributeValuePositionalContext } from "./o7dParser";
 import { AttributeValueNamedContext } from "./o7dParser";
 import { ExpressionsContext } from "./o7dParser";
 import { ExpressionContext } from "./o7dParser";
+import { IdWithDotContext } from "./o7dParser";
 import { EnumDeclarationContext } from "./o7dParser";
 import { ScalarDeclarationContext } from "./o7dParser";
 
@@ -36,11 +39,25 @@ export interface o7dParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitSchema?: (ctx: SchemaContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `o7dParser.comment`.
+	 * Visit a parse tree produced by `o7dParser.anyComment`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitComment?: (ctx: CommentContext) => Result;
+	visitAnyComment?: (ctx: AnyCommentContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.lineEnding`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitLineEnding?: (ctx: LineEndingContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.commentLine`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCommentLine?: (ctx: CommentLineContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `o7dParser.header`.
@@ -50,11 +67,11 @@ export interface o7dParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitHeader?: (ctx: HeaderContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclaration`.
+	 * Visit a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclarationComment`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitModelOrEnumOrScalarDeclaration?: (ctx: ModelOrEnumOrScalarDeclarationContext) => Result;
+	visitModelOrEnumOrScalarDeclarationComment?: (ctx: ModelOrEnumOrScalarDeclarationCommentContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `o7dParser.modelDeclaration`.
@@ -64,18 +81,18 @@ export interface o7dParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitModelDeclaration?: (ctx: ModelDeclarationContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `o7dParser.modelAttributeDeclaration`.
+	 * Visit a parse tree produced by `o7dParser.modelAttributeDeclarationLine`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitModelAttributeDeclaration?: (ctx: ModelAttributeDeclarationContext) => Result;
+	visitModelAttributeDeclarationLine?: (ctx: ModelAttributeDeclarationLineContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `o7dParser.fieldDeclaration`.
+	 * Visit a parse tree produced by `o7dParser.fieldDeclarationLine`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitFieldDeclaration?: (ctx: FieldDeclarationContext) => Result;
+	visitFieldDeclarationLine?: (ctx: FieldDeclarationLineContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `o7dParser.fieldAttributeDeclaration`.
@@ -118,6 +135,13 @@ export interface o7dParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitExpression?: (ctx: ExpressionContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `o7dParser.idWithDot`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitIdWithDot?: (ctx: IdWithDotContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `o7dParser.enumDeclaration`.

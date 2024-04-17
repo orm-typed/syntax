@@ -4,18 +4,21 @@
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
 import { SchemaContext } from "./o7dParser";
-import { CommentContext } from "./o7dParser";
+import { AnyCommentContext } from "./o7dParser";
+import { LineEndingContext } from "./o7dParser";
+import { CommentLineContext } from "./o7dParser";
 import { HeaderContext } from "./o7dParser";
-import { ModelOrEnumOrScalarDeclarationContext } from "./o7dParser";
+import { ModelOrEnumOrScalarDeclarationCommentContext } from "./o7dParser";
 import { ModelDeclarationContext } from "./o7dParser";
-import { ModelAttributeDeclarationContext } from "./o7dParser";
-import { FieldDeclarationContext } from "./o7dParser";
+import { ModelAttributeDeclarationLineContext } from "./o7dParser";
+import { FieldDeclarationLineContext } from "./o7dParser";
 import { FieldAttributeDeclarationContext } from "./o7dParser";
 import { AttributeValuesContext } from "./o7dParser";
 import { AttributeValuePositionalContext } from "./o7dParser";
 import { AttributeValueNamedContext } from "./o7dParser";
 import { ExpressionsContext } from "./o7dParser";
 import { ExpressionContext } from "./o7dParser";
+import { IdWithDotContext } from "./o7dParser";
 import { EnumDeclarationContext } from "./o7dParser";
 import { ScalarDeclarationContext } from "./o7dParser";
 
@@ -37,15 +40,37 @@ export interface o7dParserListener extends ParseTreeListener {
 	exitSchema?: (ctx: SchemaContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `o7dParser.comment`.
+	 * Enter a parse tree produced by `o7dParser.anyComment`.
 	 * @param ctx the parse tree
 	 */
-	enterComment?: (ctx: CommentContext) => void;
+	enterAnyComment?: (ctx: AnyCommentContext) => void;
 	/**
-	 * Exit a parse tree produced by `o7dParser.comment`.
+	 * Exit a parse tree produced by `o7dParser.anyComment`.
 	 * @param ctx the parse tree
 	 */
-	exitComment?: (ctx: CommentContext) => void;
+	exitAnyComment?: (ctx: AnyCommentContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.lineEnding`.
+	 * @param ctx the parse tree
+	 */
+	enterLineEnding?: (ctx: LineEndingContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.lineEnding`.
+	 * @param ctx the parse tree
+	 */
+	exitLineEnding?: (ctx: LineEndingContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.commentLine`.
+	 * @param ctx the parse tree
+	 */
+	enterCommentLine?: (ctx: CommentLineContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.commentLine`.
+	 * @param ctx the parse tree
+	 */
+	exitCommentLine?: (ctx: CommentLineContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `o7dParser.header`.
@@ -59,15 +84,15 @@ export interface o7dParserListener extends ParseTreeListener {
 	exitHeader?: (ctx: HeaderContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclaration`.
+	 * Enter a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclarationComment`.
 	 * @param ctx the parse tree
 	 */
-	enterModelOrEnumOrScalarDeclaration?: (ctx: ModelOrEnumOrScalarDeclarationContext) => void;
+	enterModelOrEnumOrScalarDeclarationComment?: (ctx: ModelOrEnumOrScalarDeclarationCommentContext) => void;
 	/**
-	 * Exit a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclaration`.
+	 * Exit a parse tree produced by `o7dParser.modelOrEnumOrScalarDeclarationComment`.
 	 * @param ctx the parse tree
 	 */
-	exitModelOrEnumOrScalarDeclaration?: (ctx: ModelOrEnumOrScalarDeclarationContext) => void;
+	exitModelOrEnumOrScalarDeclarationComment?: (ctx: ModelOrEnumOrScalarDeclarationCommentContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `o7dParser.modelDeclaration`.
@@ -81,26 +106,26 @@ export interface o7dParserListener extends ParseTreeListener {
 	exitModelDeclaration?: (ctx: ModelDeclarationContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `o7dParser.modelAttributeDeclaration`.
+	 * Enter a parse tree produced by `o7dParser.modelAttributeDeclarationLine`.
 	 * @param ctx the parse tree
 	 */
-	enterModelAttributeDeclaration?: (ctx: ModelAttributeDeclarationContext) => void;
+	enterModelAttributeDeclarationLine?: (ctx: ModelAttributeDeclarationLineContext) => void;
 	/**
-	 * Exit a parse tree produced by `o7dParser.modelAttributeDeclaration`.
+	 * Exit a parse tree produced by `o7dParser.modelAttributeDeclarationLine`.
 	 * @param ctx the parse tree
 	 */
-	exitModelAttributeDeclaration?: (ctx: ModelAttributeDeclarationContext) => void;
+	exitModelAttributeDeclarationLine?: (ctx: ModelAttributeDeclarationLineContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `o7dParser.fieldDeclaration`.
+	 * Enter a parse tree produced by `o7dParser.fieldDeclarationLine`.
 	 * @param ctx the parse tree
 	 */
-	enterFieldDeclaration?: (ctx: FieldDeclarationContext) => void;
+	enterFieldDeclarationLine?: (ctx: FieldDeclarationLineContext) => void;
 	/**
-	 * Exit a parse tree produced by `o7dParser.fieldDeclaration`.
+	 * Exit a parse tree produced by `o7dParser.fieldDeclarationLine`.
 	 * @param ctx the parse tree
 	 */
-	exitFieldDeclaration?: (ctx: FieldDeclarationContext) => void;
+	exitFieldDeclarationLine?: (ctx: FieldDeclarationLineContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `o7dParser.fieldAttributeDeclaration`.
@@ -167,6 +192,17 @@ export interface o7dParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitExpression?: (ctx: ExpressionContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `o7dParser.idWithDot`.
+	 * @param ctx the parse tree
+	 */
+	enterIdWithDot?: (ctx: IdWithDotContext) => void;
+	/**
+	 * Exit a parse tree produced by `o7dParser.idWithDot`.
+	 * @param ctx the parse tree
+	 */
+	exitIdWithDot?: (ctx: IdWithDotContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `o7dParser.enumDeclaration`.

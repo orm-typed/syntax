@@ -4,47 +4,57 @@ options {
 	tokenVocab = o7dLexer;
 }
 
-schema: comment* header? modelOrEnumOrScalarDeclaration* EOF;
+schema:
+	commentLine* header? modelOrEnumOrScalarDeclarationComment* EOF;
 
-comment: SINGLE_LINE_COMMENT | MULTI_LINE_COMMENT;
+anyComment: SINGLE_LINE_COMMENT | MULTI_LINE_COMMENT;
+lineEnding: (WS? anyComment)* NEWLINES;
+commentLine: WS? anyComment lineEnding;
 header:
-	'header' '{' (fieldDeclaration | comment)* (
-		modelAttributeDeclaration
-		| comment
-	)* '}';
-modelOrEnumOrScalarDeclaration:
-	comment
+	'header' WS? '{' lineEnding (
+		fieldDeclarationLine
+		| commentLine
+	)* (modelAttributeDeclarationLine | commentLine)* '}' lineEnding;
+modelOrEnumOrScalarDeclarationComment:
+	commentLine
 	| modelDeclaration
 	| enumDeclaration
 	| scalarDeclaration;
 modelDeclaration:
-	'model' ID '{' (fieldDeclaration | comment)* (
-		modelAttributeDeclaration
-		| comment
-	)* '}';
-modelAttributeDeclaration:
-	'@@' ID ('.' ID)* ('(' attributeValues? ')')?;
-fieldDeclaration:
-	ID ID ('?' | ('[' ']'))? fieldAttributeDeclaration*;
+	'model' WS ID WS? '{' lineEnding (
+		fieldDeclarationLine
+		| commentLine
+	)* (modelAttributeDeclarationLine | commentLine)* '}' lineEnding;
+modelAttributeDeclarationLine:
+	WS? '@' '@' idWithDot ('(' attributeValues? ')')? lineEnding;
+fieldDeclarationLine:
+	WS? ID WS ID ('?' | ('[' ']'))? (
+		WS fieldAttributeDeclaration
+	)* lineEnding;
 fieldAttributeDeclaration:
-	'@' ID ('.' ID)* ('(' attributeValues? ')')?;
-attributeValues: (
+	'@' idWithDot ('(' attributeValues? ')')?;
+attributeValues:
+	(
 		attributeValuePositional (',' attributeValuePositional)* (
 			',' attributeValueNamed
 		)*
 	)
 	| (attributeValueNamed (',' attributeValueNamed)*);
-attributeValuePositional: expression;
-attributeValueNamed: ID ':' expression;
-expressions: expression (',' expression)*;
+attributeValuePositional: WS? expression WS?;
+attributeValueNamed: WS? ID WS? ':' WS? expression WS?;
+expressions: WS? expression (WS? ',' WS? expression)* WS?;
 expression:
-	ID ('.' ID)* ('(' attributeValues? ')')?
+	idWithDot ('(' attributeValues? ')')?
 	| STRING
 	| NUMBER
 	| BOOLEAN
 	| 'null'
 	| ('[' expressions? ']');
+idWithDot: ID ('.' ID)*;
 enumDeclaration:
-	'enum' ID '{' STRING* modelAttributeDeclaration* '}';
+	'enum' WS ID WS? '{' lineEnding (
+		(WS? STRING lineEnding)
+		| commentLine
+	)* (modelAttributeDeclarationLine | commentLine)* '}' lineEnding;
 scalarDeclaration:
-	'scalar' ID '=' ID fieldAttributeDeclaration*;
+	'scalar' WS ID WS? '=' WS? ID (WS fieldAttributeDeclaration)* lineEnding;

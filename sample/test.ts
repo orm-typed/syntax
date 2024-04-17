@@ -3,6 +3,7 @@ import { parseSchemaContext } from "../src/parseSchemaContext";
 
 function isValid(filePath: string): boolean {
   const input = fs.readFileSync(filePath, "utf-8");
+  console.log(parseSchemaContext(input));
   return !Array.isArray(parseSchemaContext(input));
 }
 

@@ -31,7 +31,7 @@ model User {
    */
 
   auth OAuth[] @relation("User:OAuth")
-/* test */}
+}
 
 model OAuth {
   id ID @id @default(native("AUTO_INCREMENT"))
