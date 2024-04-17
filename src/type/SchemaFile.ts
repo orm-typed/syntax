@@ -1,25 +1,39 @@
 export interface SchemaFile {
+  comments: Comment[];
   header: ModelDeclaration;
-  declarations: (ModelDeclaration | EnumDeclaration | ScalarDeclaration)[];
+  declarations: (
+    | Comment
+    | ModelDeclaration
+    | EnumDeclaration
+    | ScalarDeclaration
+  )[];
+}
+
+export interface Comment {
+  type: "comment";
+  multiline: boolean;
+  message: string;
 }
 
 export interface ModelDeclaration {
   type: "model";
   name: string;
-  fields: ModelFieldDeclaration[];
-  attributes: AttributeDeclaration[];
+  children: (ModelFieldDeclaration | AttributeDeclaration | Comment)[];
 }
 
 export interface ModelFieldDeclaration {
+  type: "field";
   name: string;
   dataType: string;
   fieldType: ModelFieldDeclarationType;
   attributes: AttributeDeclaration[];
+  comments: Comment[];
 }
 
 export type ModelFieldDeclarationType = "normal" | "optional" | "array";
 
 export interface AttributeDeclaration {
+  type: "attribute";
   name: string;
   parameter?: FieldAttributeParameterDeclaration[];
 }
@@ -43,12 +57,19 @@ export interface Keyword {
 
 export interface EnumDeclaration {
   name: string;
-  members: string[];
-  attributes: AttributeDeclaration[];
+  members: (EnumMember | Comment)[];
+  attributes: (AttributeDeclaration | Comment)[];
+}
+
+export interface EnumMember {
+  type: "enumMember";
+  name: string;
+  comments: Comment[];
 }
 
 export interface ScalarDeclaration {
   lhsName: string;
   rhsName: string;
   attributes: AttributeDeclaration[];
+  comments: Comment[];
 }
