@@ -8,7 +8,7 @@ function isValid(filePath: string): boolean {
 }
 
 if (process.argv.length !== 3) {
-  console.error("Usage: node test <file>");
+  console.error(`Usage: node ${process.argv[1]} <file>`);
   process.exit(0);
 }
 

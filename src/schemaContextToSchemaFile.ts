@@ -276,6 +276,7 @@ function modelDeclarationToModelDeclaration(
   }
 
   return {
+    type: "model",
     name: input.ID().text,
     commentsBefore: lineEndingToComments(start),
     children,
@@ -286,6 +287,9 @@ function modelDeclarationToModelDeclaration(
 function enumDeclarationToEnumlDeclaration(
   input: EnumDeclarationContext
 ): EnumDeclaration {
+  const [start, end] = input.lineEnding();
+  if (!start || !end) throw new Error();
+
   const children: (EnumMember | ModelAttributeDeclaration | Comment[])[] = [];
   for (let i = 0; i < input.childCount; i++) {
     const child = input.getChild(i);
@@ -301,8 +305,11 @@ function enumDeclarationToEnumlDeclaration(
   }
 
   return {
+    type: "enum",
     name: input.ID().text,
+    commentsBefore: lineEndingToComments(start),
     children,
+    commentsAfter: lineEndingToComments(end),
   };
 }
 
@@ -321,6 +328,7 @@ function scalarDeclarationToScalarDeclaration(
   if (!lhs || !rhs) throw new Error();
 
   return {
+    type: "scalar",
     lhsName: lhs.text,
     rhsName: rhs.text,
     attributes: input

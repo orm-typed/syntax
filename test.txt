@@ -1,0 +1,37 @@
+/**
+ * Test file
+ *
+ * Content of this file is not in actual syntax.
+ */
+header {
+  ID String @db.type(undefined=UUID) @default(undefined="\" \bthis\b \bis\b \bnot\b \bvalid\b \bUUID\b\\\\\\\"\\\bn\b\"")
+/**
+   * Test file
+   *
+   * This file is to test o7d grammar
+   */
+  @@db(undefined="\"\btest\b\"")
+  @@enablePreviewFeature(undefined="\"\bmultiSchema\b\"")
+// comment
+  @@multiSchema.schemas(undefined=[default, "\"\btest\b\""]) // test
+}
+model User {
+  id ID @id @default(undefined=autoincrement())
+  nickname String @unique
+  passwordHash String?
+/**
+   * Test file
+   *
+   * This file is to test o7d grammar
+   */
+  auth OAuth[] @relation(undefined="\"\bUser\b:\bOAuth\b\"")
+}
+model OAuth {
+  id ID @id @default(undefined=native("\"\bAUTO_INCREMENT\b\""))
+  provider String
+  externalId String
+  userId ID?
+  user User? @relation(undefined="\"\bUser\b:\bOAuth\b\"", fields=[userId], references=[id])
+  @@unique(undefined=[provider, externalId])
+  @@map(undefined="\"\boauth\b\"")
+}

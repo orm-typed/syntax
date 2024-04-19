@@ -25,7 +25,7 @@ UNICODE_ESC: 'u' HEX HEX HEX HEX;
 HEX: [0-9a-fA-F];
 NUMBER16: '0x' HEX+;
 NUMBER10: (([1-9][0-9]*) | '0') ('.' [0-9]+)?;
-NUMBER8: ('0o' | '0') [0-7]+;
+NUMBER8: ('0o' | '0') [1-7] [0-7]*;
 NUMBER2: '0b' [0-1]+;
 NUMBER: NUMBER16 | NUMBER10 | NUMBER8 | NUMBER2;
 BOOLEAN: 'true' | 'false';

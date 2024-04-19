@@ -69,15 +69,19 @@ export interface ModelAttributeDeclaration {
 }
 
 export interface ModelDeclaration {
+  type: "model";
   name: string;
   commentsBefore: Comment[];
-  children: (ModelFieldDeclaration | FieldAttributeDeclaration | Comment[])[];
+  children: (ModelFieldDeclaration | ModelAttributeDeclaration | Comment[])[];
   commentsAfter: Comment[];
 }
 
 export interface EnumDeclaration {
+  type: "enum";
   name: string;
+  commentsBefore: Comment[];
   children: (EnumMember | ModelAttributeDeclaration | Comment[])[];
+  commentsAfter: Comment[];
 }
 
 export interface EnumMember {
@@ -87,6 +91,7 @@ export interface EnumMember {
 }
 
 export interface ScalarDeclaration {
+  type: "scalar";
   lhsName: string;
   rhsName: string;
   attributes: FieldAttributeDeclaration[];
