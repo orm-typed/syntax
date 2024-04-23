@@ -28,13 +28,13 @@ function main(filePath: string) {
 }
 
 function printSchema(input: SchemaFile) {
-  input.comments.forEach(printComments);
+  input.comments.forEach((comment) => printComments(comment, ""));
   if (input.header) printHeader(input.header);
   input.declarations.forEach(printDeclaration);
 }
 
-function printComments(input: Comment[]) {
-  console.log(input.map((comment) => comment.message).join(" "));
+function printComments(input: Comment[], prefix = "  ") {
+  console.log(`${prefix}${input.map((comment) => comment.message).join(" ")}`);
 }
 
 function printHeader(input: HeaderDeclaration) {

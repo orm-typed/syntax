@@ -5,21 +5,21 @@
  */
 header {
   ID String @db.type(undefined=UUID) @default(undefined="\" \bthis\b \bis\b \bnot\b \bvalid\b \bUUID\b\\\\\\\"\\\bn\b\"")
-/**
+  /**
    * Test file
    *
    * This file is to test o7d grammar
    */
   @@db(undefined="\"\btest\b\"")
   @@enablePreviewFeature(undefined="\"\bmultiSchema\b\"")
-// comment
+  // comment
   @@multiSchema.schemas(undefined=[default, "\"\btest\b\""]) // test
 }
 model User {
   id ID @id @default(undefined=autoincrement())
   nickname String @unique
   passwordHash String?
-/**
+  /**
    * Test file
    *
    * This file is to test o7d grammar
